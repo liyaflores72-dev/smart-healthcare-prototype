@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AI-Based Smart Healthcare Management System - Prototype</title>
+<style>
+body { font-family: Arial, Helvetica, sans-serif; margin: 0; background:#f4f6fb; }
+header { background:#2d6cdf; color:white; padding:16px 24px; }
+nav { background:#e9eef8; padding:10px 20px; display:flex; gap:16px; }
+nav a { text-decoration:none; color:#2d6cdf; font-weight:bold; cursor:pointer; }
+.container{ padding:24px; }
+.card{ background:white; padding:20px; border-radius:12px; box-shadow:0 3px 10px rgba(0,0,0,.08); margin-bottom:18px; }
+input,select{ padding:8px; width:100%; margin:6px 0 12px 0; }
+button{ padding:10px 16px; background:#2d6cdf; color:white; border:none; border-radius:8px; cursor:pointer; }
+button.secondary{ background:#6c757d; }
+.hidden{ display:none; }
+footer{ background:#e9eef8; padding:8px; text-align:center; }
+.badge{ padding:4px 8px; border-radius:8px; font-size:12px; }
+.badge.red{ background:#ffb3b3;}
+.badge.green{ background:#b9e8c9;}
+.grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px;}
+</style>
+</head>
+<body>
+
+<header><h2>AI‑Based Smart Healthcare Management System (Prototype)</h2></header>
+
+<nav id="topnav" class="hidden">
+<a onclick="show('doctor')">Doctor Dashboard</a>
+<a onclick="show('patient')">Patient Profile</a>
+<a onclick="show('appoint')">Appointments</a>
+<a onclick="show('admin')">Admin Dashboard</a>
+<a onclick="logout()">Logout</a>
+</nav>
+
+<div class="container">
+
+<div id="login">
+<div class="card">
+<h3>Login</h3>
+<label>Username</label>
+<input id="user" placeholder="Enter username">
+<label>Password</label>
+<input type="password" id="pwd" placeholder="Enter password">
+<p>Select a role to simulate login:</p>
+<div style="display:flex; gap:10px; flex-wrap:wrap;">
+<button onclick="login('doctor')">Login as Doctor</button>
+<button onclick="login('admin')" class="secondary">Login as Admin</button>
+<button onclick="login('patient')" class="secondary">Login as Patient</button>
+</div>
+</div>
+</div>
+
+<div id="doctor" class="hidden">
+<div class="card">
+<h3>Doctor Dashboard</h3>
+<div class="grid">
+<div class="card">
+<h4>Patient List</h4>
+<ul>
+<li>Patient A <span class='badge red'>High Priority</span></li>
+<li>Patient B <span class='badge green'>Stable</span></li>
+<li>Patient C</li>
+</ul>
+</div>
+<div class="card">
+<h4>AI Diagnosis Suggestions</h4>
+<p>⚠ Suggestion: Further cardiac screening recommended for Patient A.</p>
+</div>
+<div class="card">
+<h4>Alerts & Notifications</h4>
+<p>No critical alerts.</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="patient" class="hidden">
+<div class="card">
+<h3>Patient Profile</h3>
+<div class="grid">
+<div class="card">
+<h4>Patient Information</h4>
+<p>Name: Patient A<br>Age: 45<br>Status: Under Observation</p>
+</div>
+<div class="card">
+<h4>Medical History</h4>
+<p>Diabetes, Hypertension</p>
+</div>
+<div class="card">
+<h4>Test Results & Prescriptions</h4>
+<p>Blood sugar levels remain elevated. Medication adjusted.</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="appoint" class="hidden">
+<div class="card">
+<h3>Appointment Management</h3>
+<div class="grid">
+<div class="card">
+<h4>Calendar View</h4>
+<p>Mon – Booked<br>Tue – Available<br>Wed – Available</p>
+</div>
+<div class="card">
+<h4>Available Time Slots</h4>
+<select>
+<option>10:00 AM</option>
+<option>11:30 AM</option>
+<option>2:00 PM</option>
+</select>
+<button>Confirm Appointment</button>
+</div>
+</div>
+</div>
+</div>
+
+<div id="admin" class="hidden">
+<div class="card">
+<h3>Admin Dashboard</h3>
+<div class="grid">
+<div class="card">
+<h4>Patient Statistics</h4>
+<p>Active Patients: 120</p>
+</div>
+<div class="card">
+<h4>Staff Workload</h4>
+<p>Doctors Active: 18</p>
+</div>
+<div class="card">
+<h4>Reports & Analytics</h4>
+<p>System usage is stable with increasing daily logins.</p>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<footer>Prototype Demo | Single‑File Web App</footer>
+
+<script>
+function show(id){
+document.querySelectorAll('#doctor,#patient,#appoint,#admin').forEach(e=>e.classList.add('hidden'));
+document.getElementById(id).classList.remove('hidden');
+}
+function login(role){
+document.getElementById('login').classList.add('hidden');
+document.getElementById('topnav').classList.remove('hidden');
+show(role);
+}
+function logout(){
+document.getElementById('topnav').classList.add('hidden');
+document.getElementById('login').classList.remove('hidden');
+document.querySelectorAll('#doctor,#patient,#appoint,#admin').forEach(e=>e.classList.add('hidden'));
+}
+</script>
+
+</body>
+</html>
